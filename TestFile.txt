@@ -1,5 +1,9 @@
 Test the text file for pull command for testing
+<<<<<<< HEAD
 Test the text file for pull command for testing
 Test the text file for pull command for testing
 
 
+=======
+Commit
+>>>>>>> 525ef2135e36bf80ef89f11481d2105dcc0ab86b
