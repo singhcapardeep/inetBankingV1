@@ -20,7 +20,7 @@ public class Reporting extends TestListenerAdapter {
 	
 	public ExtentSparkReporter spark;
 	public ExtentReports extent;
-	public ExtentTest logger;
+	public ExtentTest eLogger;
 	
 	public void onStart(ITestContext testContext)
 	{
@@ -52,15 +52,15 @@ public class Reporting extends TestListenerAdapter {
 	
 	public void onTestSuccess(ITestResult tr)
 	{
-		logger=extent.createTest(tr.getName());
-		logger.log(Status.PASS, MarkupHelper.createLabel(tr.getName(),ExtentColor.GREEN));// send the passed information
+		eLogger=extent.createTest(tr.getName());
+		eLogger.log(Status.PASS, MarkupHelper.createLabel(tr.getName(),ExtentColor.GREEN));// send the passed information
 		
 	}
 	
 	public void onTestFailure(ITestResult tr)
 	{
-		logger=extent.createTest(tr.getName()); //create new entry in the report
-		logger.log(Status.FAIL, MarkupHelper.createLabel(tr.getName(),ExtentColor.RED));// send the failed  information
+		eLogger=extent.createTest(tr.getName()); //create new entry in the report
+		eLogger.log(Status.FAIL, MarkupHelper.createLabel(tr.getName(),ExtentColor.RED));// send the failed  information
 		
 		String screenshotPath = System.getProperty("user.dir")+"\\Screenshots\\"+tr.getName()+".png";
 		
@@ -68,7 +68,7 @@ public class Reporting extends TestListenerAdapter {
 		if(f.exists())
 		{
 			try {
-				logger.fail("Screeshot is below:" + logger.addScreenCaptureFromPath(screenshotPath));
+				eLogger.fail("Screeshot is below:" + eLogger.addScreenCaptureFromPath(screenshotPath));
 			}
 			catch(Exception e)
 			{
@@ -80,8 +80,8 @@ public class Reporting extends TestListenerAdapter {
 	
 	public void onTestSkipped(ITestResult tr)
 	{
-		logger = extent.createTest(tr.getName());// create new entry in the report
-		logger.log(Status.SKIP, MarkupHelper.createLabel(tr.getName(), ExtentColor.ORANGE));
+		eLogger = extent.createTest(tr.getName());// create new entry in the report
+		eLogger.log(Status.SKIP, MarkupHelper.createLabel(tr.getName(), ExtentColor.ORANGE));
 		
 	}
 	
